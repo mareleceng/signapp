@@ -72,17 +72,14 @@ class Signup(Handler):
         if  have_error:    
             self.render('signup.html', ** params)
         else:           
-            self.redirect('/welcome?username=' +username)
+            self.redirect('/welcome?username='+username)
           
-class Welcome(Handler):            
+class Welcome(Handler):
     def get(self):
-        username = self.request.get('username')
-        if valid_username(username):
-            self.render('welcome.html', username = username)
-        else:
-            self.redirect('/')
-            
+          username = self.request.get() 
+          self.render('welcome.html', username=username)
+               
 app = webapp2.WSGIApplication([('/', Signup),
-                               ('/welcome?username=', Welcome)],                            
+                              ('/welcome', Welcome) ],                            
                             debug=True)  
 
