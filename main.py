@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+
 #
 # Copyright 2007 Google Inc.
 #
@@ -72,13 +73,15 @@ class Signup(Handler):
         if  have_error:    
             self.render('signup.html', ** params)
         else:           
-            self.redirect('/welcome?username=' +username)
+            self.redirect('/welcome?username=')
           
 class Welcome(Handler):
+    def post(self):
+            username= self.request.get('username')
     def get(self):
             username= self.request.get('username')
             if username:
-               self.render('welcome.html', username= username)
+               self.render('welcome.html', username=username)
                
 app = webapp2.WSGIApplication([('/', Signup),
                               ('/welcome', Welcome)],                            
