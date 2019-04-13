@@ -77,7 +77,7 @@ class Signup(Handler):
           
 class Welcome(Handler):
     def post(self):
-            username= self.request.get('username')
+            username= self.request.post('username=')
     def get(self):
             username= self.request.get('username')
             if username:
